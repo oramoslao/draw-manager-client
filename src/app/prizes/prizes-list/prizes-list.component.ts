@@ -74,13 +74,15 @@ export class PrizesListComponent implements OnInit {
     this.errors = {};
     this.sortingPrize = prize;
     this.lastWinner = {} as PrizeSelectionStep;
-    this.showModal();
 
     this.prizeSelectionSteps
       .selectWinner(prize.id)
       .subscribe(pst => {
         // Winner
         this.lastWinner = pst;
+
+        // Show modal
+        this.showModal();
 
         // Getting all prizes
         this.getAllPrizes();

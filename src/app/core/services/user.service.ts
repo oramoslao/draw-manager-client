@@ -28,7 +28,7 @@ export class UserService {
       this.apiService
         .get('/users/current')
         .subscribe(
-          data => this.setAuth(data.user),
+          (user: User) => this.setAuth(user),
           err => this.purgeAuth()
         );
     } else {
@@ -63,9 +63,9 @@ export class UserService {
     const route = (type === 'login') ? '/login' : '';
     return this.apiService.post('/users' + route, { userData: credentials })
       .pipe(map(
-        data => {
-          this.setAuth(data);
-          return data;
+        (user: User) => {
+          this.setAuth(user);
+          return user;
         }
       ));
   }
