@@ -75,14 +75,17 @@ export class PrizesListComponent implements OnInit {
     this.sortingPrize = prize;
     this.lastWinner = {} as PrizeSelectionStep;
 
+    // Show modal
+    this.showModal();
+
     this.prizeSelectionSteps
       .selectWinner(prize.id)
       .subscribe(pst => {
         // Winner
         this.lastWinner = pst;
 
-        // Show modal
-        this.showModal();
+        // Show Winner Modal animation
+        this.animationIndex = 2;
 
         // Getting all prizes
         this.getAllPrizes();
@@ -130,13 +133,6 @@ export class PrizesListComponent implements OnInit {
         this.sortingPrize = {} as Prize;
       });
 
-    // Si se usa animacion por tiempo (Configuracion)
-    if (this.useAnimationTime) {
-      setTimeout(() => {
-        this.animationIndex = 2;
-      },
-        this.animationTime);
-    }
   }
 
   showAnimation(animationNumber: number) {
