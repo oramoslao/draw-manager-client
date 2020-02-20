@@ -85,7 +85,10 @@ export class PrizesListComponent implements OnInit {
         this.lastWinner = pst;
 
         // Show Winner Modal animation
-        this.animationIndex = 2;
+        setTimeout(() => {
+          this.animationIndex = 2;
+          console.log(this.animationIndex);
+        }, 6000);
 
         // Getting all prizes
         this.getAllPrizes();
